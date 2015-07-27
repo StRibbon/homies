@@ -11,9 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150727165818) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "connections", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "sphere_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
+  add_index "connections", ["sphere_id"], name: "index_connections_on_sphere_id", using: :btree
+  add_index "connections", ["user_id"], name: "index_connections_on_user_id", using: :btree
+
+  create_table "spheres", force: :cascade do |t|
+    t.string   "name"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "email"
+    t.string   "password"
+    t.string   "password_digest"
+    t.string   "img_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_foreign_key "connections", "spheres"
+  add_foreign_key "connections", "users"
 end
