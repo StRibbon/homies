@@ -9,17 +9,28 @@
 #users
 User.destroy_all
 Sphere.destroy_all
+Category.destroy_all
+Expense.destroy_all
 
-user1 = User.create(username:"valentina", email:"phersonval@gmail.com", password:"valentina")
-user2 = User.create(username:"stephen", email:"stribbon@icloud.com", password:"stephen")
-user3 = User.create(username:"armand", email:"apaquino@gmail.com", password:"apaquino")
-user4 = User.create(username:"rando", email:"spaceribbon@gmail.com", password:"rando")
+u1 = User.create(username:"valentina", email:"phersonval@gmail.com", password:"valentina")
+u2 = User.create(username:"stephen", email:"stribbon@icloud.com", password:"stephen")
+u3 = User.create(username:"armand", email:"apaquino@gmail.com", password:"apaquino")
+u4 = User.create(username:"rando", email:"spaceribbon@gmail.com", password:"rando")
 
-sphere1 = Sphere.create(name:"Vegas", description:"Crazy Nights")
-sphere2 = Sphere.create(name:"August", description:"SF rent and sh!t")
+s1 = Sphere.create(name:"Vegas", description:"Crazy Nights", owner_id: u1.id)
+s2 = Sphere.create(name:"August", description:"SF rent and sh!t", owner_id: u2.id)
 
-Connection.create(user: user1, sphere: sphere1)
-Connection.create(user: user2, sphere: sphere1)
-Connection.create(user: user3, sphere: sphere1)
-Connection.create(user: user2, sphere: sphere2)
-Connection.create(user: user3, sphere: sphere2)
+Connection.create(user: u1, sphere: s1)
+Connection.create(user: u2, sphere: s1)
+Connection.create(user: u3, sphere: s1)
+Connection.create(user: u2, sphere: s2)
+Connection.create(user: u3, sphere: s2)
+
+c1 = Category.create(name:"Travel", color: "green")
+c2 = Category.create(name:"Meals", color: "red")
+c3 = Category.create(name:"Entertainment", color: "blue")
+c4 = Category.create(name:"Drinks", color: "yellow")
+
+e1 = Expense.create(name:"Gas", cost: 60.08 , notes: "Shell on the i15", user_id: u3.id, category_id: c1.id, sphere_id: s1.id)
+e1 = Expense.create(name:"Redbull", cost: 12.50 , notes: "Needed wings! 2 four packs", user_id: u2.id, category_id: c4.id, sphere_id: s1.id)
+e1 = Expense.create(name:"Big ass steaks", cost: 80.69 , notes: "medium rare bone-in", user_id: u1.id, category_id: c2.id, sphere_id: s1.id)

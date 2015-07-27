@@ -1,0 +1,11 @@
+<h1>EXPENSES INDEX</h1>
+<ul>
+<% @expenses.each do |expense| %>
+<li>
+<strong>Name:</strong> <%= expense.name %>
+<strong>Cost:</strong> <%= expense.cost %>
+<strong>Notes:</strong> <%= expense.notes %>
+<strong>Category:</strong> <%= expense.category.name %>
+</li>
+<% end %>
+</ul>
