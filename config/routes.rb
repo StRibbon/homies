@@ -1,12 +1,20 @@
 Rails.application.routes.draw do
+  get 'expenses/index'
+
+  get 'expenses/show'
+
   root "sessions#login"
   get 'login', to: "sessions#login", as: "login"
   post 'login', to: "sessions#attempt_login"
   delete 'logout', to: "sessions#logout", as: "logout"
-  
+
   resources :users do
-    resources :spheres, shallow: true
+    resources :spheres do
+      resources :expenses, shallow: true
+    end
   end
+
+  resources :categories
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

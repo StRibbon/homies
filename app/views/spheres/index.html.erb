@@ -2,7 +2,7 @@
 <ul>
 <% @spheres.each do |sphere| %>
 <li>
-<strong>Name:</strong> <%= sphere.name %>
+<%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
 <strong>Description:</strong> <%= sphere.description %>
 </li>
 <% end %>
