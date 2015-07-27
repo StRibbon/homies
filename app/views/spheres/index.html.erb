@@ -1,9 +1,25 @@
 <h1>SPHERES INDEX</h1>
+
+
+<%= link_to "Add Sphere", new_user_sphere_path(@user)%>
+
+
+
+
+
+
+
+
 <ul>
 <% @spheres.each do |sphere| %>
 <li>
 <%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
 <strong>Description:</strong> <%= sphere.description %>
+
+<%= link_to "Edit", edit_user_sphere_path(id: sphere.id) %> 
+<%= link_to 'Destroy', user_sphere_path(id: sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
+
 </li>
 <% end %>
 </ul>
