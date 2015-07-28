@@ -4,8 +4,8 @@ class ExpensesController < ApplicationController
   before_action :find_expense_id, only: [:edit, :destroy, :update]
 
   def index
-  	id = params[:sphere_id]
-    @expenses = Expense.where(sphere_id: id)
+  	@id = params[:sphere_id]
+    @expenses = Expense.where(sphere_id: @id)
   end
 
   def show

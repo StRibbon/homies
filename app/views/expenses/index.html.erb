@@ -15,3 +15,7 @@
 </li>
 <% end %>
 </ul>
+<% total_expense_by_category(@id).each do |expense|%>
+  <%= expense["sum"] %>
+  <%= expense["name"] %> <br>
+<% end %>
