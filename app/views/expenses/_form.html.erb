@@ -1,0 +1,25 @@
+<%= form_for [@user, @sphere, @expense] do |f|%>
+<div>
+  <%= f.label :name%>
+  <%= f.text_field :name%>
+</div>
+<div>
+  <%= f.label :cost%>
+  <%= f.text_field :cost%>
+</div>
+<div>
+  <%= f.label :notes%>
+  <%= f.text_field :notes%>
+</div>
+<div>
+<%= f.collection_radio_buttons(:category_id, @categories, :id, :name) do |b| %>
+  <span>
+	<%= b.radio_button %>
+	<%= b.label %>
+  </span>
+  <% end %>
+</div>
+<div>
+  <%= f.submit %>
+</div>
+<% end %>

@@ -1,4 +1,6 @@
 <h1>EXPENSES INDEX</h1>
+
+<%= link_to "Add Expense", new_user_sphere_expense_path %>
 <ul>
 <% @expenses.each do |expense| %>
 <li>
@@ -6,6 +8,9 @@
 <strong>Cost:</strong> <%= expense.cost %>
 <strong>Notes:</strong> <%= expense.notes %>
 <strong>Category:</strong> <%= expense.category.name %>
+
+<%= link_to "Delete", expense_path(expense.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+
 </li>
 <% end %>
 </ul>
