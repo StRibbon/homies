@@ -1,0 +1,16 @@
+  <div id="navigation">
+    <div class="wrap_nav_left">
+
+  <%= link_to image_tag('home_symbol.png'), user_spheres_path %>
+
+      <ul>
+        <li><%= link_to "Add Sphere", new_user_sphere_path %></li>
+        <li><%= link_to "About", login_path %></li>
+        <li><%= link_to "Invite Homie", login_path %></li>
+      </ul>
+      <div class="profile_pic">
+      <img class="profile_pic_img"src=<%= current_user.img_url %>>
+      </div>
+      <li class="nav_signout"><%= link_to "Sign out", logout_path, id: "nav_signout_linkto" %></li>
+    </div>
+  </div>
