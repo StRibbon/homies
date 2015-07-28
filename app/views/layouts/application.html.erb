@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<% if current_user %>
+  <img src=<%=current_user.img_url%> width="150">
+  <li><%= link_to "hello, #{current_user.username}", user_path(current_user)%></li>
+  <li><%= link_to "Sign Out", logout_path, method: :delete %></li>
+  <% end %>
+
 <% flash.each do |key, value| %>
   <% if key == "notice" %>
     <%= content_tag :div, value, class: "text-center alert alert-warning" %>
