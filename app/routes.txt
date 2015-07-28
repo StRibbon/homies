@@ -1,0 +1,39 @@
+Prefix Verb   URI Pattern                                               Controller#Action
+        expenses_index GET    /expenses/index(.:format)                                 expenses#index
+         expenses_show GET    /expenses/show(.:format)                                  expenses#show
+                  root GET    /                                                         sessions#login
+                 login GET    /login(.:format)                                          sessions#login
+                       POST   /login(.:format)                                          sessions#attempt_login
+                logout DELETE /logout(.:format)                                         sessions#logout
+  user_sphere_expenses GET    /users/:user_id/spheres/:sphere_id/expenses(.:format)     expenses#index
+                       POST   /users/:user_id/spheres/:sphere_id/expenses(.:format)     expenses#create
+new_user_sphere_expense GET    /users/:user_id/spheres/:sphere_id/expenses/new(.:format) expenses#new
+          edit_expense GET    /expenses/:id/edit(.:format)                              expenses#edit
+               expense GET    /expenses/:id(.:format)                                   expenses#show
+                       PATCH  /expenses/:id(.:format)                                   expenses#update
+                       PUT    /expenses/:id(.:format)                                   expenses#update
+                       DELETE /expenses/:id(.:format)                                   expenses#destroy
+          user_spheres GET    /users/:user_id/spheres(.:format)                         spheres#index
+                       POST   /users/:user_id/spheres(.:format)                         spheres#create
+       new_user_sphere GET    /users/:user_id/spheres/new(.:format)                     spheres#new
+      edit_user_sphere GET    /users/:user_id/spheres/:id/edit(.:format)                spheres#edit
+           user_sphere GET    /users/:user_id/spheres/:id(.:format)                     spheres#show
+                       PATCH  /users/:user_id/spheres/:id(.:format)                     spheres#update
+                       PUT    /users/:user_id/spheres/:id(.:format)                     spheres#update
+                       DELETE /users/:user_id/spheres/:id(.:format)                     spheres#destroy
+                 users GET    /users(.:format)                                          users#index
+                       POST   /users(.:format)                                          users#create
+              new_user GET    /users/new(.:format)                                      users#new
+             edit_user GET    /users/:id/edit(.:format)                                 users#edit
+                  user GET    /users/:id(.:format)                                      users#show
+                       PATCH  /users/:id(.:format)                                      users#update
+                       PUT    /users/:id(.:format)                                      users#update
+                       DELETE /users/:id(.:format)                                      users#destroy
+            categories GET    /categories(.:format)                                     categories#index
+                       POST   /categories(.:format)                                     categories#create
+          new_category GET    /categories/new(.:format)                                 categories#new
+         edit_category GET    /categories/:id/edit(.:format)                            categories#edit
+              category GET    /categories/:id(.:format)                                 categories#show
+                       PATCH  /categories/:id(.:format)                                 categories#update
+                       PUT    /categories/:id(.:format)                                 categories#update
+                       DELETE /categories/:id(.:format)                                 categories#destroy
