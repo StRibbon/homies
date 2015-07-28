@@ -1,4 +1,4 @@
-<h1>EXPENSES INDEX</h1>
+<h1><%= @sphere.name %></h1>
 
 <%= link_to "Add Expense", new_user_sphere_expense_path %>
 <ul>
@@ -15,40 +15,40 @@
 </li>
 <% end %>
 </ul>
-<h2>Total</h2>
-<%= total_expense_amount_sphere(@sphere)%>
+<h4>Total</h4>
+$<%= total_expense_amount_sphere(@sphere)%>
 <br>
-<h2>Number of users in sphere</h2>
+<h4>Number of users in sphere</h4>
 <%= number_of_user_in_sphere(@id) %>
-<h2>Per person</h2>
+<h4>Per person</h4>
 <%= total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id) %>
-<h2>Total spend by Category</h2>
+<h4>Total spend by Category</h4>
 <% total_expense_by_category(@id).each do |expense|%>
-  <%= expense["sum"] %>
+  $<%= expense["sum"] %>
   <%= expense["name"] %> <br>
 <% end %>
 <br>
-<h2>Total spend by User</h2>
+<h4>Total spend by User</h4>
 <% total_expense_by_user(@id).each do |expense|%>
-  <%= expense["sum"] %>
+  $<%= expense["sum"] %>
   <%= expense["username"] %> <br>
 <% end %>
 
-<h2>Expense by User</h2>
+<h4>Expense by User</h4>
 <% user_id_in_sphere(@id).each do |user|%>
    <% x = user["user_id"] %>
    <% itemized_expense_by_user(@id, x).each do |item|%>
-      <%= item["cost"] %>
+      $<%= item["cost"] %>
       <%= item["name"] %>
       <%= item["username"] %><br>
    <% end %>
 <% end %>
 <br>
-<h2>Expense by Category by User</h2>
+<h4>Expense by Category by User</h4>
 <% user_id_in_sphere(@id).each do |user|%>
    <% x = user["user_id"] %>
    <% total_expense_by_category_by_user(@id, x).each do |item|%>
-      <%= item["sum"] %>
+      $<%= item["sum"] %>
       <%= item["name"] %>
       <%= item["username"] %><br>
    <% end %>
