@@ -1,6 +1,6 @@
 class SpheresController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create]
-  before_action :find_sphere_id, only: [:edit]
+  before_action :set_user, only: [:index, :new, :create, :edit, :update]
+  before_action :find_sphere_id, only: [:edit, :update, :destroy]
 
   def index
     @spheres = Sphere.all
@@ -13,11 +13,22 @@ class SpheresController < ApplicationController
 
   end
 
+  def update
+    @sphere.update sphere_params
+    if @sphere.save
+      redirect_to user_spheres_path(@user), flash: {success: "#{@sphere.name} updated!"}
+    else
+      render :edit
+    end
+  end
+
   def new
     @sphere = Sphere.new
   end
 
   def destroy
+    @sphere.destroy
+    redirect_to user_spheres_path, flash: {success: "#{@sphere.name} Deleted!"}
   end
 
   def create
@@ -48,5 +59,5 @@ class SpheresController < ApplicationController
       @sphere = Sphere.find params[:id]
     end
 
-    	
+
 end

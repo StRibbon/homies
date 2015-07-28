@@ -1,0 +1,11 @@
+<h1>Categories#index</h1>
+<ul>
+
+</ul>
+<% @categories.each do |category|%>
+<li><%= category.name %> | <%= category.color %>
+    <%= link_to "Edit", edit_category_path(category.id) %> 
+</li>
+
+<% end %>
+</ul>
