@@ -6,16 +6,30 @@
   <% end %>
 <% end %>
 
-<%= form_for @user do |f|%>
-<div>
-  <%= f.label :email%>
-  <%= f.email_field :email%>
-</div>
-<div>
-  <%= f.label :password%>
-  <%= f.password_field :password%>
-</div>
-<div>
-  <%= f.submit %>
-</div>
+<div class="container">
+
+<%= form_for @user, :html => {:class => 'form-signin signup_form'} do |f|%>
+
+<img class="signup_logo" src="<%= asset_path( 'homies_logo.png' ) %>" alt="Homies Logo" width="210">
+
+  <%= f.label :username, class: 'sr-only'%>
+  <%= f.text_field :username, class: 'form-control', placeholder: "Username"%>
+
+  <%= f.label :email, class: 'sr-only'%>
+  <%= f.email_field :email, class: 'form-control', placeholder: "Email address"%>
+
+
+  <%= f.label :password, class: 'sr-only'%>
+  <%= f.password_field :password, class: 'form-control', placeholder: "Password"%>
+
+  <%= f.label :img_url, class: 'sr-only'%>
+  <%= f.text_field :img_url, class: 'form-control', placeholder: "Profile image url"%>
+
+  <%= f.submit "Create Homie", class: 'btn btn-lg btn-primary btn-block' %>
 <% end %>
+
+<div class="forgot_signup">
+   <%= link_to "Homie already? Log in", login_path, class: 'forgot_password'%>
+</div>
+
+</div>

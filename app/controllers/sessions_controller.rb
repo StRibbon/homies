@@ -25,20 +25,20 @@ class SessionsController < ApplicationController
       found_user = User.where(email: params[:email]).first
       if found_user && found_user.authenticate(params[:password])
         session[:user_id] = found_user.id
-        redirect_to user_spheres_path(found_user), flash: {success: "Welcome back #{found_user.email}!"}
+        redirect_to user_spheres_path(found_user), flash: {success: "Welcome back #{found_user.email}"}
       else
-        flash[:alert] = "email / password combination is invalid"
+        flash[:alert] = "Email / Password combination is invalid"
         redirect_to login_path(@user)
       end
     else
-      flash[:alert] = "please enter email and password"
+      flash[:alert] = "Please enter email and password"
       redirect_to login_path
     end
   end
 
   def logout
     session[:user_id] = nil
-    flash[:notice] = "Logged Out"
+    flash[:notice] = "Logged out"
     redirect_to login_path
   end
 
