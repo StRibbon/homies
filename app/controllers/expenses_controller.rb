@@ -5,6 +5,7 @@ class ExpensesController < ApplicationController
 
   def index
   	@id = params[:sphere_id]
+    @sphere = Sphere.find(@id)
     @expenses = Expense.where(sphere_id: @id)
   end
 
