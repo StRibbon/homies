@@ -17,7 +17,7 @@ class ExpensesController < ApplicationController
   end
 
   def create
-    
+
     @expense = Expense.create expense_params
     @expense.user_id = params[:user_id]
     @expense.sphere_id = params[:sphere_id]
@@ -31,8 +31,7 @@ class ExpensesController < ApplicationController
 
   def destroy
     @expense.destroy
-    sphere_id = params[:sphere_id]
-    redirect_to user_sphere_expenses_path(sphere_id: params[:sphere_id], user_id: params[:user_id]), flash: {success: "#{@expense.name} Deleted!"}
+    redirect_to user_sphere_expenses_path(sphere_id: @expense.sphere_id, user_id: @expense.user_id), flash: {success: "#{@expense.name} Deleted!"}
   end
 
   private
