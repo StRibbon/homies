@@ -1,0 +1,149 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// LOGIN STYLES
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+
+.form-signin {
+  max-width: 390px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-left: 1px solid rgb(212, 212, 216);
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin #email {
+  margin-bottom: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin #password {
+  margin-bottom: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-lg {
+  border-radius: 0;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  background-image: url("login_button.png");
+  background-size: cover;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  border-color: #826E98;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(142, 119, 153, 1)
+}
+
+body {
+  background-image: url("roller_4.jpg");
+  background-size: cover;
+  height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login_logo {
+  position: absolute;
+  top: 20%;
+  left: 6%;
+}
+
+.btn-primary {
+  border-color: rgba(46, 109, 164, 0);
+  color: #ECECEC
+}
+
+a.signup {
+  display: inline;
+  float: right;
+  color: rgb(128, 109, 153)
+}
+
+a.forgot_password {
+  display: inline;
+  color: rgb(128, 109, 153)
+}
+
+.forgot_signup {
+  width: 289px;
+  margin: 0 auto;
+  margin-top: 15px;
+  color: rgb(128, 109, 153)
+}
+
+// SIGN UP PAGE
+.form-signin #user_email {
+  margin-bottom: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin #user_password {
+  margin-bottom: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin #user_username {
+  margin-bottom: 15px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin #user_img_url {
+  margin-bottom: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+#new_user{
+	margin-top: 106px; 
+}
+
+.signup_logo {
+  position: absolute;
+  top: 36%;
+  left: 6%;
+}
+
+// FLASH MESSAGE STYLES
+.alert-danger {
+	background-color: #ADABCB;
+	border-color: #ADABCB;
+	color: #FFFFFF
+}
