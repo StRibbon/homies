@@ -9,6 +9,7 @@
 <strong>Notes:</strong> <%= expense.notes %>
 <strong>Category:</strong> <%= expense.category.name %>
 
+<%= link_to "Edit", edit_expense_path(expense.id) %>
 <%= link_to "Delete", expense_path(expense.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 
 </li>

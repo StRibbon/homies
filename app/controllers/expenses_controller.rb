@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
-  before_action :set_user, only: [:index, :new, :create, :edit, :update]
-  before_action :find_sphere_id, only: [:new, :edit, :update]
-  before_action :find_expense_id, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:index, :new, :create]
+  before_action :find_sphere_id, only: [:new]
+  before_action :find_expense_id, only: [:edit, :destroy, :update]
 
   def index
   	id = params[:sphere_id]
@@ -14,6 +14,19 @@ class ExpensesController < ApplicationController
   def new
   	@expense = Expense.new
   	@categories = Category.all
+  end
+  def edit
+    @categories = Category.all
+  end
+  def update
+    @expense.update expense_params
+    sphere_id = Expense.last.sphere_id
+    user_id = Expense.last.user_id
+    if @expense.save
+      redirect_to user_sphere_expenses_path(sphere_id: sphere_id, user_id: user_id), flash: {success: "#{@expense.name} updated!"}
+    else
+      render :edit
+    end
   end
 
   def create
