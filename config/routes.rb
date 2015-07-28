@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+  resources :resets, only: [:new, :edit, :create, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
