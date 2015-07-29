@@ -2,8 +2,9 @@ class SpheresController < ApplicationController
   before_action :set_user, only: [:index, :new, :create, :edit, :update]
   before_action :find_sphere_id, only: [:edit, :update, :destroy]
   before_action :ensure_correct_user_for_sphere_edit, only: [:update, :edit, :destroy]
+  
   def index
-    @spheres = Sphere.all
+    @spheres = Sphere.joins(:connections).where(connections: {user_id: @user.id})
   end
 
   def show
@@ -63,7 +64,8 @@ class SpheresController < ApplicationController
     end
     def ensure_correct_user_for_sphere_edit
       sphere = Sphere.find params[:id]
-      unless sphere.owner_id == session[:user_id]
+      binding.pry
+      unless sphere.owner_id == session[:user_id].to_s
         return redirect_to user_spheres_path(sphere_id: sphere), flash: {warning: "You are not authorized to edit: #{@sphere.name}"}
       end
     end
