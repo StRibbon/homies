@@ -235,7 +235,7 @@ footer {
   height: 200px;
   position: absolute;
   bottom: 0;
-  background-image: url("footer.png");
+  background-image: url("footer_3.png");
   background-size: cover;
   border-top: 1px solid rgb(225, 226, 227);
 }
@@ -330,4 +330,9 @@ margin-top: 15px;
 .delete {
   display: inline;
   color: rgb(173, 173, 173)
+}
+
+// FLASH MESSAGES
+.alert{
+margin-bottom: 0px
 }
