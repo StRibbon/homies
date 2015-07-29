@@ -159,84 +159,30 @@ $<%= total_expense_amount_sphere(@sphere)%>
 var chart5 = new CanvasJS.Chart("chartContainer5",
    {
      title:{
-     text: "Evening Sales of a Restaurant"
-     },
+      text: "Expenses by User"
+      },
 
-     axisX: {
-       valueFormatString: "MMM",
-       interval: 1,
-       intervalType: "month"
-     },
+      toolTip:{
+        enabled: true,
+        content: "{legendText}: {y}"
+      },
 
-     data: [
-     {
-       type: "stackedBar",
-       legendText: "meals",
-       showInLegend: "true",
-       dataPoints: [
-       { x: new Date(2012, 01, 1), y: 71 },
-       { x: new Date(2012, 02, 1), y: 55},
-       { x: new Date(2012, 03, 1), y: 50 },
-       { x: new Date(2012, 04, 1), y: 65 },
-       { x: new Date(2012, 05, 1), y: 95 }
+      data: [
+        <% categories_per_sphere(@id).each do |cat|%>
+          {
+          type: "stackedBar",
+          legendText: "<%= cat["name"] %>",
+          showInLegend: "true",
+          dataPoints: [
 
-       ]
-     },
-       {
-       type: "stackedBar",
-       legendText: "snacks",
-       showInLegend: "true",
-       dataPoints: [
-       { x: new Date(2012, 01, 1), y: 71 },
-       { x: new Date(2012, 02, 1), y: 55},
-       { x: new Date(2012, 03, 1), y: 50 },
-       { x: new Date(2012, 04, 1), y: 65 },
-       { x: new Date(2012, 05, 1), y: 95 }
+          <% usernames_per_sphere(@id).each do |user|%>
+              { label: "<%= user["username"] %>" , y: <%= cat_sum_with_default(@id, cat["id"], user["id"]) %>},
+          <% end %>
+          ]
+        },
+        <% end %>
 
-       ]
-     },
-       {
-       type: "stackedBar",
-       legendText: "drinks",
-       showInLegend: "true",
-       dataPoints: [
-       { x: new Date(2012, 01, 1), y: 71 },
-       { x: new Date(2012, 02, 1), y: 55},
-       { x: new Date(2012, 03, 1), y: 50 },
-       { x: new Date(2012, 04, 1), y: 65 },
-       { x: new Date(2012, 05, 1), y: 95 }
-
-       ]
-     },
-
-       {
-       type: "stackedBar",
-       legendText: "dessert",
-       showInLegend: "true",
-       dataPoints: [
-       { x: new Date(2012, 01, 1), y: 61 },
-       { x: new Date(2012, 02, 1), y: 75},
-       { x: new Date(2012, 03, 1), y: 80 },
-       { x: new Date(2012, 04, 1), y: 85 },
-       { x: new Date(2012, 05, 1), y: 105 }
-
-       ]
-     },
-       {
-       type: "stackedBar",
-       legendText: "takeaway",
-       showInLegend: "true",
-       dataPoints: [
-       { x: new Date(2012, 01, 1), y: 20 },
-       { x: new Date(2012, 02, 1), y: 35},
-       { x: new Date(2012, 03, 1), y: 30 },
-       { x: new Date(2012, 04, 1), y: 45 },
-       { x: new Date(2012, 05, 1), y: 25 }
-
-       ]
-     }
-
-     ]
+      ]
    });
 
 
@@ -248,3 +194,24 @@ chart4.render();
 chart5.render();
 }
 </script>
+
+<hr>
+
+<% categories_per_sphere(@id).each do |cat|%>
+<p>
+  {
+  type: "stackedBar",
+  legendText: "<%= cat["name"] %>",
+  showInLegend: "true",
+  dataPoints: [
+
+</p>
+  <% usernames_per_sphere(@id).each do |user|%>
+    <p>
+      { label: "<%= user["username"] %>" , y: <%= cat_sum_with_default(@id, cat["id"], user["id"]) %>},
+
+    </p>
+  <% end %>
+  ]
+},
+<% end %>
