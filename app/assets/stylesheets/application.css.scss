@@ -66,7 +66,8 @@ body {
 }
 
 body {
-  background-image: url("roller_4.jpg");
+  background: rgba(225, 225, 225, .5);
+  padding-top: 0px;
   background-size: cover;
   height: 100vh;
   font-family: 'Josefin Sans', sans-serif;
@@ -147,3 +148,84 @@ a.forgot_password {
 	border-color: #ADABCB;
 	color: #FFFFFF
 }
+
+// LOGIN SIGNUP BACKGROUND IMAGE
+
+.fake_body {
+  background-image: url("roller_4.jpg");
+  background-size: cover;
+  height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+// NAVIGATION BAR
+#navigation {
+    width: 100%;
+    height: 120px;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Josefin Sans', sans-serif;
+    background-image: url(navbar.png); 
+    background-size: cover;  
+}
+
+#navigation ul {
+    height: auto;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
+    display: inline;
+    position: absolute;
+    padding-top: 52px;
+}
+
+#navigation li { 
+display: inline; 
+padding-top: 0px;
+padding-left: 20px; 
+}
+
+#navigation a {
+    text-decoration: none;
+    color: #7566A9;
+    padding: 8px 8px 8px 8px;
+}
+
+#navigation a:hover {
+    text-decoration: underline;
+}
+
+.wrap_nav_left {
+  padding-top: 30px;
+  padding-left: 30px;
+  position: relative
+}
+
+.profile_pic {
+  width: 49px;
+  height: 47px;
+  float: right;
+  margin-right: 30px;
+}
+
+.profile_pic_img {
+  width: 49px;
+  height: 47px;
+  margin-right: 0px;
+}
+
+.nav_signout {
+  position: absolute;
+  bottom: -3px;
+  right: 30px;
+  font-size: .9em;
+  color: rgb(173, 173, 173)
+}
+
+a#nav_signout_linkto {
+  font-size: 1em;
+  color: rgb(173, 173, 173);
+  padding-right: 0px
+}
+
