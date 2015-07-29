@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'about', to: "static_pages#about", as: "about"
+  get 'invite', to: "static_pages#invite", as: "invite"
+
   get 'categories/index'
 
   get 'categories/new'
