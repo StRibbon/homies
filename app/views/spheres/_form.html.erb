@@ -9,7 +9,7 @@
 <%= f.text_field :name, class: 'form-control', placeholder: "Title of sphere"%>
 
 <%= f.label :description, class: 'sr-only'%>
-<%= f.email_field :description, class: 'form-control', placeholder: "What's it about?"%>
+<%= f.text_field :description, class: 'form-control', placeholder: "What's it about?"%>
 
 <p class="add_homies">Add Homies: </p>
 <%= f.collection_check_boxes(:user_ids, @users, :id, :username) do |b| %>
@@ -26,26 +26,5 @@
 <% end %>
 
 </div>
-
-<div>
-  <%= f.label :description%>
-  <%= f.text_field :description%>
-</div>
-
-  <div class="form-group">
-   <%= f.collection_check_boxes(:user_ids, @users, :id, :username) do |b| %>
-       <% unless current_user.username == b.label[current_user.username]%>
-       <span class="col-sm-7">
-           <%= b.check_box %>
-           <%= b.label %>
-       </span>
-       <% end %>
-  </div>
-   <% end %>
-<div>
-  <%= f.submit %>
-</div>
-<% end %>
-
 </div>
 
