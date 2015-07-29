@@ -2,7 +2,8 @@ class ExpensesController < ApplicationController
   before_action :set_user, only: [:index, :new, :create]
   before_action :find_sphere_id, only: [:new]
   before_action :find_expense_id, only: [:edit, :destroy, :update]
- 
+  before_action :ensure_correct_user_for_expense_edit, only: [:update, :edit, :destroy]
+
   def index
   	@id = params[:sphere_id]
     @sphere = Sphere.find(@id)
@@ -61,5 +62,13 @@ class ExpensesController < ApplicationController
     end
     def find_expense_id
       @expense = Expense.find params[:id]
+    end
+    def ensure_correct_user_for_expense_edit
+      expense = Expense.find params[:id]
+      user = session[:user_id]
+      # binding.pry
+      unless expense.user_id == user
+        return redirect_to user_sphere_expenses_path(sphere_id: expense.sphere_id, user_id: user), flash: {warning: "You are not authorized to edit: #{expense.name}"}
+      end
     end
 end

@@ -64,7 +64,6 @@ class SpheresController < ApplicationController
     end
     def ensure_correct_user_for_sphere_edit
       sphere = Sphere.find params[:id]
-      binding.pry
       unless sphere.owner_id == session[:user_id].to_s
         return redirect_to user_spheres_path(sphere_id: sphere), flash: {warning: "You are not authorized to edit: #{@sphere.name}"}
       end
