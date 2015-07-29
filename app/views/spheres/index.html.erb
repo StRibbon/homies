@@ -12,3 +12,34 @@
 <% end %>
 </ul>
 
+<div id="chartContainer" style="height: 300px; width: 100%;">
+</div>
+<script type="text/javascript">
+  window.onload = function () {
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      backgroundColor: null,
+      axisX:{
+          gridThickness:0,
+          lineThickness:0
+      },
+      axisY:{
+          gridThickness:0,
+          lineThickness:0
+      },
+
+       data: [
+           {
+           type: "stackedBar",
+           dataPoints: [
+             <% @spheres.each do |sphere| %>
+                 { label: "<%= sphere.name %>", y: <%= total_expense_amount_sphere(sphere)%> },
+             <% end %>
+           ]
+         },
+       ]
+    });
+
+chart.render();
+}
+</script>
