@@ -66,7 +66,8 @@ body {
 }
 
 body {
-  background-image: url("roller_4.jpg");
+  background: rgba(225, 225, 225, .5);
+  padding-top: 0px;
   background-size: cover;
   height: 100vh;
   font-family: 'Josefin Sans', sans-serif;
@@ -146,4 +147,239 @@ a.forgot_password {
 	background-color: #ADABCB;
 	border-color: #ADABCB;
 	color: #FFFFFF
+}
+
+// LOGIN SIGNUP BACKGROUND IMAGE
+
+.fake_body {
+  background-image: url("roller_4.jpg");
+  background-size: cover;
+  height: 100vh;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+// NAVIGATION BAR
+#navigation {
+    width: 100%;
+    height: 120px;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: 'Josefin Sans', sans-serif;
+    background-image: url(navbar.png); 
+    background-size: cover;  
+}
+
+#navigation ul {
+    height: auto;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0px;
+    display: inline;
+    position: absolute;
+    padding-top: 52px;
+}
+
+#navigation li { 
+display: inline; 
+padding-top: 0px;
+padding-left: 20px; 
+}
+
+#navigation a {
+    text-decoration: none;
+    color: #7566A9;
+    padding: 8px 8px 8px 8px;
+}
+
+#navigation a:hover {
+    text-decoration: underline;
+}
+
+.wrap_nav_left {
+  padding-top: 30px;
+  padding-left: 30px;
+  position: relative
+}
+
+.profile_pic {
+  width: 49px;
+  height: 47px;
+  float: right;
+  margin-right: 30px;
+}
+
+.profile_pic_img {
+  width: 49px;
+  height: 47px;
+  margin-right: 0px;
+}
+
+.nav_signout {
+  position: absolute;
+  bottom: -3px;
+  right: 30px;
+  font-size: .9em;
+  color: rgb(173, 173, 173)
+}
+
+a#nav_signout_linkto {
+  font-size: 1em;
+  color: rgb(173, 173, 173);
+  padding-right: 0px
+}
+
+// FOOTER STYLES
+footer {
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  bottom: 0;
+  background-image: url("footer_3.png");
+  background-size: cover;
+  border-top: 1px solid rgb(225, 226, 227);
+}
+
+.col-md-4 {
+  height: 100%;
+}
+
+.row {
+  height: 170px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin-left: 0px;
+  width: 100%;
+}
+
+.left_footer_info {
+  list-style-type: none;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.sphere_title {
+  font-size: 3em;
+  font-weight: bold;
+  color: #7566A9;
+}
+
+.left_descriptors {
+  font-size: 1.1em;
+  color: #7566A9;
+  font-weight: bold;
+}
+
+.large_expense {
+  font-size: 6em;
+  font-weight: bold;
+  list-style-type: none;
+}
+
+.small_dollar {
+  font-size: 25px;
+  font-weight: normal;
+}
+
+.large_expense {
+  text-align: center;
+  padding-left:0px;
+  line-height: initial;
+  padding-top: 18px;
+  color: #7566A9;;
+}
+
+li.total_expense {
+  font-size: 23px;
+  color: #7566A9;
+  font-weight: bold;
+}
+
+body {
+  color: #5A5A5A;
+}
+
+.homies {
+margin-top: 15px;
+}
+
+.bottom_right_footer {
+  list-style-type: none;
+  padding-left: 20px;
+  padding-top: 47px;
+}
+
+.view_button {
+  display: inline;
+  margin-right: 40px;
+  background-color: white;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  padding-left: 12px;
+  padding-right: 12px;
+  color: #7566A9;
+}
+
+.edit {
+  display: inline;
+  margin-right: 40px;
+  color: #7566A9;
+}
+
+.delete {
+  display: inline;
+  color: rgb(173, 173, 173)
+}
+
+// FLASH MESSAGES
+.alert{
+margin-bottom: 0px
+}
+
+// ABOUT PAGE
+.about_text {
+  height: 150px;
+  width: 325px;
+  font-size: 15px;
+  color: #101010;
+}
+
+.contact {
+  color: rgb(173, 173, 173);
+  text-align: center;
+}
+
+.purple {
+  color: #7566A9;
+  font-weight: bold;
+}
+
+.about_back a {
+  float: right;
+  color: #7566A9; 
+}
+
+// INVITE USER
+.forgot_signup a {
+  float: right;
+  color: #7566A9; 
+}
+
+// NEW SPHERE
+.form-signin #sphere_description {
+  margin-bottom: 15px;
+}
+
+.form-signin #sphere_name {
+  margin-bottom: 15px;
+}
+
+.add_homies {
+  color: #7566A9;
+  font-weight: bold;
+}
+
+label {
+  font-weight: normal
 }

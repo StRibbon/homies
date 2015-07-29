@@ -12,10 +12,10 @@ Sphere.destroy_all
 Category.destroy_all
 Expense.destroy_all
 
-u1 = User.create(username:"valentina", email:"phersonval@gmail.com", password:"valentina")
-u2 = User.create(username:"stephen", email:"stribbon@icloud.com", password:"stephen")
-u3 = User.create(username:"armand", email:"apaquino@gmail.com", password:"apaquino")
-u4 = User.create(username:"rando", email:"spaceribbon@gmail.com", password:"rando")
+u1 = User.create(username:"valentina", email:"phersonval@gmail.com", password:"valentina", img_url:"http://also.kottke.org/misc/images/brad-wilson-owl-01.jpg")
+u2 = User.create(username:"stephen", email:"stribbon@icloud.com", password:"stephen", img_url:"http://also.kottke.org/misc/images/brad-wilson-owl-02.jpg")
+u3 = User.create(username:"armand", email:"apaquino@gmail.com", password:"apaquino", img_url:"http://also.kottke.org/misc/images/brad-wilson-owl-03.jpg")
+u4 = User.create(username:"rando", email:"spaceribbon@gmail.com", password:"rando", img_url:"")
 
 s1 = Sphere.create(name:"Vegas", description:"Crazy Nights", owner_id: u1.id)
 s2 = Sphere.create(name:"August", description:"SF rent and sh!t", owner_id: u2.id)

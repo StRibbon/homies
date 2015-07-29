@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.create user_params
-    if @User.save
-      session[:user_id] = @User.user_id
+    if @user.save
+      session[:user_id] = @user.user_id
       redirect_to home_path
     else
       render :signup

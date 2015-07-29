@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'about', to: "static_pages#about", as: "about"
+  get 'invite', to: "static_pages#invite", as: "invite"
+
   get 'categories/index'
 
   get 'categories/new'
@@ -22,7 +25,13 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'spheres/:sphere_id/connections', to: "connections#index", as: "connections"
+  get 'spheres/:sphere_id/connections/new', to: "connections#new", as: "new_connection"
+  get 'spheres/:sphere_id/connections/edit', to: "connections#edit", as: "edit_connections"
+  delete 'spheres/:sphere_id/connections/:id', to: "connections#destroy", as: "delete_connection"
+  # resources :connections
   resources :categories
+  resources :resets, only: [:new, :edit, :create, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

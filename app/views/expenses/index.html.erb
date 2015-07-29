@@ -1,4 +1,17 @@
-<h1>EXPENSES INDEX</h1>
+<h1><%= @sphere.name %>
+</h1>
+<%= link_to "Edit Sphere", edit_user_sphere_path(id: @sphere.id) %>
+<%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<h5>
+<%= link_to "Edit h0mie$", connections_path %>:
+<% @connections.each do |connection| %>
+<% user = User.find_by_id(connection.user_id) %>
+<%= user.username %>
+<img src=<%= user.img_url %> width="40">
+<% end %>
+</h5>
+
+<br>
 
 <%= link_to "Add Expense", new_user_sphere_expense_path %>
 <ul>
@@ -15,3 +28,41 @@
 </li>
 <% end %>
 </ul>
+<h4>Total</h4>
+$<%= total_expense_amount_sphere(@sphere)%>
+<br>
+<h4>Number of users in sphere</h4>
+<%= number_of_user_in_sphere(@id) %>
+<h4>Per person</h4>
+<%= total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id) %>
+<h4>Total spend by Category</h4>
+<% total_expense_by_category(@id).each do |expense|%>
+  $<%= expense["sum"] %>
+  <%= expense["name"] %> <br>
+<% end %>
+<br>
+<h4>Total spend by User</h4>
+<% total_expense_by_user(@id).each do |expense|%>
+  $<%= expense["sum"] %>
+  <%= expense["username"] %> <br>
+<% end %>
+
+<h4>Expense by User</h4>
+<% user_id_in_sphere(@id).each do |user|%>
+   <% x = user["user_id"] %>
+   <% itemized_expense_by_user(@id, x).each do |item|%>
+      $<%= item["cost"] %>
+      <%= item["name"] %>
+      <%= item["username"] %><br>
+   <% end %>
+<% end %>
+<br>
+<h4>Expense by Category by User</h4>
+<% user_id_in_sphere(@id).each do |user|%>
+   <% x = user["user_id"] %>
+   <% total_expense_by_category_by_user(@id, x).each do |item|%>
+      $<%= item["sum"] %>
+      <%= item["name"] %>
+      <%= item["username"] %><br>
+   <% end %>
+<% end %>

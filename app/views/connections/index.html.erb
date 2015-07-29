@@ -1,0 +1,13 @@
+<h1>Connections Index</h1>
+
+<ul>
+<% @connections.each do |connection|%>
+<li> 
+  <% user = User.find_by_id(connection.user_id) %>
+  <img src=<%= user.img_url %> width="50">
+  <%= user.username %>
+  <%= link_to "Delete", delete_connection_path(@id, connection), method: :delete, data: { confirm: 'Are you sure?' } %> 
+</li>
+
+<% end %>
+</ul>
