@@ -1,62 +1,117 @@
 <%= render "navbar" %>
 
 <ul>
+  <% counter= 0 %>
 <% @spheres.each do |sphere| %>
 <li>
+<div class="<%= counter %>-show">
 <%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
+</div>
 <strong>Description:</strong> <%= sphere.description %>
 <%= total_expense_amount_sphere(sphere)%>
+<%= sphere.created_at%>
 <%= link_to "Edit", edit_user_sphere_path(id: sphere.id) %>
 <%= link_to 'Destroy', user_sphere_path(id: sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 </li>
+<div class="<%= counter %>" data-name="<%= sphere.name %>" data-description="<%= sphere.description%>" data-createDate="<%= sphere.created_at%>" data-cost="<%= total_expense_amount_sphere(sphere)%>" style="display:none;"></div>
+<% counter += 1 %>
 <% end %>
+
 </ul>
 
 <div id="chartContainer" style="height: 300px; width: 100%;">
 </div>
-<script type="text/javascript">
-  window.onload = function () {
 
-    CanvasJS.addColorSet("grayShades",
-    [
-      "#E1E2E3",
-      "#B5B7BA",
-      "#6E7072",
-      "#444446"
-    ]);
+<footer>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="left_footer_info">
+          <li class="sphere_title"></li>
+          <li><span class="left_descriptors">Created: </span><span class="created_date"></span></li>
+          <li><span class="left_descriptors">Description: </span><span class="sphere_description"></span></li>
+      </div>
 
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-      colorSet: "grayShades",
-      backgroundColor: null,
-      axisX:{
-          gridThickness:0,
-          lineThickness:0,
-          tickLength:0,
-          labelFontColor: "#EEEFF0"
-      },
-      axisY:{
-          gridThickness:0,
-          lineThickness:0,
-          tickLength:0,
-          labelFontColor: "#EEEFF0"
-      },
+      <div class="col-md-4">
+          <ul class="large_expense">
+            <li><span class="small_dollar">$</span><span class="big_number"></span></li>
+            <li class="total_expense">total expenses</li>
+          </ul>
+      </div>
 
-       data: [
-           {
-           type: "stackedBar",
-           click: onClick,
-           dataPoints: [
-             <% @spheres.each do |sphere| %>
-                 { label: "<%= sphere.name %>", y: <%= total_expense_amount_sphere(sphere)%> },
-             <% end %>
-           ]
-         },
-       ]
-    });
 
-function onClick(e) {alert(e.dataPoint.y + " " + e.dataPoint.x)}
-chart.render();
-}
-</script>
-<%= render "footer" %>
+      <div class="col-md-4">
+        <ul class="left_footer_info">
+          <li class="homies"><span class="left_descriptors">Homies:</span> You, Armand, Stephen</li>
+        </ul>
+
+        <ul class="bottom_right_footer">
+          <li class="view_button"><a href="">View Sphere</a></li>
+          <li class="edit">Edit</li>
+          <li class="delete">Delete</li>
+        </ul>
+
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+    window.onload = function () {
+
+      CanvasJS.addColorSet("grayShades",
+      [
+        "#E1E2E3",
+        "#B5B7BA",
+        "#6E7072",
+        "#444446"
+      ]);
+
+      var chart = new CanvasJS.Chart("chartContainer",
+      {
+        colorSet: "grayShades",
+        backgroundColor: null,
+        axisX:{
+            gridThickness:0,
+            lineThickness:0,
+            tickLength:0,
+            labelFontColor: "#EEEFF0"
+        },
+        axisY:{
+            gridThickness:0,
+            lineThickness:0,
+            tickLength:0,
+            labelFontColor: "#EEEFF0"
+        },
+
+         data: [
+             {
+             type: "stackedBar",
+             mouseover: onMouseover,
+             dataPoints: [
+               <% @spheres.each do |sphere| %>
+                   { label: "<%= sphere.name %>", y: <%= total_expense_amount_sphere(sphere)%> },
+               <% end %>
+             ]
+           },
+         ]
+      });
+
+  function onMouseover(e) {
+    var divId = "." + e.dataPoint.x;
+    var divShowId = "."+ e.dataPoint.x +"-show a";
+
+    var sphereName = $(divId).attr('data-name');
+    var sphereDescription = $(divId).attr('data-description');
+    var sphereCreated = $(divId).attr('data-createDate');
+    var sphereCost = $(divId).attr('data-cost');
+    $('.sphere_title').html(sphereName);
+    $('.created_date').html(sphereCreated);
+    $('.sphere_description').html(sphereDescription);
+    $('.big_number').html(sphereCost);
+
+    var sphereUrl = $(divShowId).attr('href');
+    $('.view_button a').attr("href", sphereUrl);
+
+  }
+  chart.render();
+  }
+  </script>
