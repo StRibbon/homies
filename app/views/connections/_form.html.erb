@@ -1,6 +1,7 @@
 <%= form_for(@connection) do |f| %>
 
-	<%= f.collection_radio_buttons(@users) do |b| %>
+
+	<%= f.collection_radio_buttons(:id, User.all, :id, :username) do |b| %>
 	  <span>
 		<%= b.radio_button %>
 		<%= b.label %>

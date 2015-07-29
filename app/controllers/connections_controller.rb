@@ -1,11 +1,10 @@
 class ConnectionsController < ApplicationController
-  before_action :find_connections, only: [:index, :new, :show, :edit, :update, :destroy]
+  before_action :find_connections, only: [:index, :show, :edit, :update, :destroy]
 
   def index
   end
 
   def new
-
     @connection = Connection.new
     @users = User.all
   end
@@ -24,7 +23,6 @@ class ConnectionsController < ApplicationController
   end
 
   def edit
-  
     @users = User.all
   end
 

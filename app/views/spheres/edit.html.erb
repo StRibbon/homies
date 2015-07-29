@@ -1,1 +1,24 @@
-<%= render 'form' %>
+<%= form_for [@user, @sphere] do |f|%>
+<div>
+  <%= f.label :name%>
+  <%= f.text_field :name%>
+</div>
+<div>
+  <%= f.label :description%>
+  <%= f.text_field :description%>
+</div>
+
+  <div class="form-group">
+   <%= f.collection_check_boxes(:user_ids, @users, :id, :username) do |b| %>
+   
+       <span class="col-sm-7">
+           <%= b.check_box %>
+           <%= b.label %>
+       </span>
+       <% end %>
+  </div>
+
+<div>
+  <%= f.submit %>
+</div>
+<% end %>

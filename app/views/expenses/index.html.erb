@@ -1,8 +1,9 @@
-<h1><%= @sphere.name %></h1>
-
-<%= link_to "Edit h0mie$", connections_path %>
+<h1><%= @sphere.name %>
+</h1>
+<%= link_to "Edit Sphere", edit_user_sphere_path(id: @sphere.id) %>
+<%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 <h5>
-h0mies:
+<%= link_to "Edit h0mie$", connections_path %>:
 <% @connections.each do |connection| %>
 <% user = User.find_by_id(connection.user_id) %>
 <%= user.username %>
