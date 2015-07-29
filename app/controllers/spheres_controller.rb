@@ -3,7 +3,7 @@ class SpheresController < ApplicationController
   before_action :find_sphere_id, only: [:edit, :update, :destroy]
   before_action :ensure_correct_user_for_sphere_edit, only: [:update, :edit, :destroy]
   def index
-    @spheres = Sphere.all
+    @spheres = Sphere.joins(:connections).where(connections: {user_id: @user.id})
   end
 
   def show
