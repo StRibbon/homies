@@ -26,10 +26,18 @@ module ApplicationHelper
     Expense.where(sphere_id: sphere_id).select("user_id").distinct.count
   end
 
-  #TODO work in progress and maybe later
 
   def total_expense_by_category_by_user(sphere_id, user_id)
-    sql = "SELECT sum(e.cost), c.name, u.username from users u, expenses e, categories c where u.id = e.user_id and c.id = e.category_id and sphere_id = #{sphere_id} and u.id = #{user_id} group by c.name, u.username;"
+    sql = "SELECT sum(e.cost), c.name, u.username from users u, expenses e, categories c where u.id = e.user_id and c.id = e.category_id and sphere_id = #{sphere_id} and u.id = #{user_id} group by u.username, c.name order by c.name;"
+    results = ActiveRecord::Base.connection.execute(sql)
+  end
+
+  def cat_id_in_sphere(sphere_id)
+    Expense.where(sphere_id: sphere_id).select("category_id").distinct
+  end
+
+  def total_expense_by_user_by_cat(sphere_id, cat_id)
+    sql = "SELECT sum(e.cost), c.name, u.username from users u, expenses e, categories c where u.id = e.user_id and c.id = e.category_id and sphere_id = #{sphere_id} and e.category_id = #{cat_id} group by u.username, c.name order by c.name;"
     results = ActiveRecord::Base.connection.execute(sql)
   end
 
