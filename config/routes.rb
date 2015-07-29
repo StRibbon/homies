@@ -22,6 +22,11 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'spheres/:sphere_id/connections', to: "connections#index", as: "connections"
+  get 'spheres/:sphere_id/connections/new', to: "connections#new", as: "new_connection"
+  get 'spheres/:sphere_id/connections/edit', to: "connections#edit", as: "edit_connections"
+  delete 'spheres/:sphere_id/connections/:id', to: "connections#destroy", as: "delete_connection"
+  # resources :connections
   resources :categories
   resources :resets, only: [:new, :edit, :create, :update]
 

@@ -1,5 +1,17 @@
 <h1><%= @sphere.name %></h1>
 
+<%= link_to "Edit h0mie$", connections_path %>
+<h5>
+h0mies:
+<% @connections.each do |connection| %>
+<% user = User.find_by_id(connection.user_id) %>
+<%= user.username %>
+<img src=<%= user.img_url %> width="40">
+<% end %>
+</h5>
+
+<br>
+
 <%= link_to "Add Expense", new_user_sphere_expense_path %>
 <ul>
 <% @expenses.each do |expense| %>

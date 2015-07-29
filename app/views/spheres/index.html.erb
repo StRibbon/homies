@@ -2,13 +2,7 @@
 
 
 <%= link_to "Add Sphere", new_user_sphere_path(@user)%>
-
-
-
-
-
-
-
+<%= link_to "Add h0mie", new_user_sphere_path(@user)%>
 
 <ul>
 <% @spheres.each do |sphere| %>
@@ -18,7 +12,6 @@
 <%= total_expense_amount_sphere(sphere)%>
 <%= link_to "Edit", edit_user_sphere_path(id: sphere.id) %>
 <%= link_to 'Destroy', user_sphere_path(id: sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-
 </li>
 <% end %>
 </ul>

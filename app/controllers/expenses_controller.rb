@@ -2,11 +2,12 @@ class ExpensesController < ApplicationController
   before_action :set_user, only: [:index, :new, :create]
   before_action :find_sphere_id, only: [:new]
   before_action :find_expense_id, only: [:edit, :destroy, :update]
-
+ 
   def index
   	@id = params[:sphere_id]
     @sphere = Sphere.find(@id)
     @expenses = Expense.where(sphere_id: @id)
+    @connections = Connection.where(sphere_id: @id)
   end
 
   def show
@@ -61,5 +62,4 @@ class ExpensesController < ApplicationController
     def find_expense_id
       @expense = Expense.find params[:id]
     end
-
 end

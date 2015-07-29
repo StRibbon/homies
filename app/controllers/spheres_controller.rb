@@ -1,7 +1,7 @@
 class SpheresController < ApplicationController
   before_action :set_user, only: [:index, :new, :create, :edit, :update]
   before_action :find_sphere_id, only: [:edit, :update, :destroy]
-
+  
   def index
     @spheres = Sphere.all
   end
@@ -10,7 +10,6 @@ class SpheresController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
