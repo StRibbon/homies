@@ -477,7 +477,8 @@ table {
 }
 
 #navigation a.dollar_logo {
-  padding-top: 0px
+  padding-top: 0px;
+  left: 42%
 }
 
 .dollar_logo img {
@@ -508,11 +509,19 @@ table {
 .addsphere_new {
   font-size: 65px;
   top: -23px;
-  left: 51px;
+  left: 15px;
   font-weight: normal
 }
 
 #roller_spacer img {
   margin-top: 50px;
   width: 100%
+}
+
+.left_space {
+  margin-left: 7px
+}
+
+.left_space a:hover {
+  text-decoration: none;
 }
