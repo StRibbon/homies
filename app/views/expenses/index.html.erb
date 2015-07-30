@@ -5,12 +5,20 @@
 </div>
 
 <h1 class="first_chart_header">Homie Expenses</h1>
-<div id="chartContainer5" style="height: 300px; width: 50%;">
+<div id="chartContainer5" style="height: 300px; width: 100%;">
 </div>
 
+<!-- <h1 class="first_chart_header">Category Breakdown</h1>
+<div id="chartContainer1" style="height: 300px; width: 80%">
+</div> -->
+
+<div class="small_spacer"></div>
+
 <h1 class="first_chart_header">Category Breakdown</h1>
-<div id="chartContainer1" style="height: 300px; width: 50%">
+<div id="chartContainer3" style="height: 400px; width: 100%">
 </div>
+
+<div class="small_spacer"></div>
 
 <table class="table table-condensed">
   <thead>
@@ -23,7 +31,7 @@
    <th></th>
    <th></th>
   </thead>
-  <tbody> 
+  <tbody>
 
 
 <% @expenses.each do |expense| %>
@@ -85,7 +93,7 @@
       <%= link_to edit_user_sphere_path(id: @sphere.id), :class => "no_underline" do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Edit Sphere</div>
       <% end %>
-      
+
       <div class="destroy_sphere">
         <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
       </div>
@@ -103,10 +111,14 @@
     CanvasJS.addColorSet("colorShades",
     [
       "#7364AC",
-      "#9F96C1",
-      "#40489D",
+      "#EADD9C",
       "#557EC0",
-      "#A4C9EA"
+      "#9F96C1",
+      "#E5CD39",
+      "#893D97",
+      "#A4C9EA",
+      "#C092C2",
+      "#40489D"
     ]);
 
     var chart1 = new CanvasJS.Chart("chartContainer1",
@@ -141,19 +153,43 @@
       ]
     });
 
-    function onMouseoverCat(e){
-      $("#footerCost").text(e.dataPoint.y);
-      $("#footerLabel").text(e.dataPoint.label);
 
-    }
-    function onMouseoutCat(e){
-      var defaultCost = $(".total_expense_value").attr("data-amount");
-      var defaultLabel = $(".total_expense_label").attr("data-label");
-      $("#footerCost").text(defaultCost);
-      $("#footerLabel").text(defaultLabel);
+    var chart3 = new CanvasJS.Chart("chartContainer3",
+    	{
 
-    }
+        colorSet: "colorShades",
+         backgroundColor: null,
+         axisX:{
+             labelMaxWidth: 60,
+             gridThickness:0,
+             lineThickness:0,
+             tickLength:0,
+             labelFontColor: "#EEEFF0",
 
+         },
+         axisY:{
+             gridThickness:0,
+             lineThickness:0,
+             tickLength:0,
+             labelFontColor: "#EEEFF0",
+             indexLabelFontColor: "#EEEFF0"
+         },
+
+    		data: [
+    		{
+    			type: "pie",
+          indexLabelLineColor: "#EEEFF0",
+          mouseover: onMouseoverCatPie,
+          mouseout: onMouseoutCat,
+    			dataPoints: [
+
+            <% total_expense_by_category(@id).each do |expense|%>
+              { y:<%= expense["sum"] %>, indexLabel:"<%= expense["name"] %>" },
+            <% end %>
+    			]
+    		}
+    		]
+    	});
 
 var chart5 = new CanvasJS.Chart("chartContainer5",
    {
@@ -195,8 +231,27 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
       ]
    });
 
+   function onMouseoverCatPie(e){
+     $("#footerCost").text(e.dataPoint.y);
+     $("#footerLabel").text(e.dataPoint.indexLabel);
+
+   }
+   function onMouseoverCat(e){
+     $("#footerCost").text(e.dataPoint.y);
+     $("#footerLabel").text(e.dataPoint.label);
+
+   }
+   function onMouseoutCat(e){
+     var defaultCost = $(".total_expense_value").attr("data-amount");
+     var defaultLabel = $(".total_expense_label").attr("data-label");
+     $("#footerCost").text(defaultCost);
+     $("#footerLabel").text(defaultLabel);
+
+   }
+
 chart5.render();
-chart1.render();
+// chart1.render();
+chart3.render();
 
 }
 window.onload = init();
