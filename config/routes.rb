@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'about', to: "static_pages#about", as: "about"
   get 'invite', to: "static_pages#invite", as: "invite"
+  post 'invite/email_invite', to: "static_pages#email_invite", as: "email_invite"
 
   get 'categories/index'
 

@@ -1,4 +1,5 @@
 class SpheresController < ApplicationController
+  before_action :confirm_logged_in
   before_action :set_user, only: [:index, :new, :create, :edit, :update]
   before_action :find_sphere_id, only: [:edit, :update, :destroy]
   before_action :ensure_correct_user_for_sphere_edit, only: [:update, :edit, :destroy]

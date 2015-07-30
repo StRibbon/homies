@@ -1,7 +1,8 @@
 <div class="fake_body">
 <div class="container">
 
-<%= form_tag login_path, :class => 'form-signin' do %>
+
+<%= form_tag({controller: "static_pages", action: "email_invite"}, method: "post", class: "form-signin") do %>
 	
 	<img class="login_logo" src="<%= asset_path( 'homies_logo.png' ) %>" alt="Homies Logo" width="210">
 

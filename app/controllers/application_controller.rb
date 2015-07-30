@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def prevent_login_signup
     if session[:user_id]
-      redirect_to :back, notice: "You are already logged in"
+      redirect_to user_spheres_path(user_id: session[:user_id]), notice: "You are already logged in"
     end
   end
 
