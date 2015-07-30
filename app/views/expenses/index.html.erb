@@ -18,6 +18,10 @@
 <strong>Cost:</strong> <%= expense.cost %>
 <strong>Notes:</strong> <%= expense.notes %>
 <strong>Category:</strong> <%= expense.category.name %>
+<strong>Created:</strong> <%= expense.created_at %>
+<% user = User.find_by_id(expense.user_id) %>
+
+<strong>Created BY:</strong> <%= user.username %>
 
 <%= link_to "Edit", edit_expense_path(expense.id) %>
 <%= link_to "Delete", expense_path(expense.id), method: :delete, data: { confirm: 'Are you sure?' } %>
