@@ -5,16 +5,20 @@
 </div>
 
 <h1 class="first_chart_header">Homie Expenses</h1>
-<div id="chartContainer5" style="height: 300px; width: 80%;">
+<div id="chartContainer5" style="height: 300px; width: 100%;">
 </div>
 
-<h1 class="first_chart_header">Category Breakdown</h1>
+<!-- <h1 class="first_chart_header">Category Breakdown</h1>
 <div id="chartContainer1" style="height: 300px; width: 80%">
-</div>
+</div> -->
+
+<div class="small_spacer"></div>
 
 <h1 class="first_chart_header">Category Breakdown</h1>
-<div id="chartContainer3" style="height: 300px; width: 80%">
+<div id="chartContainer3" style="height: 400px; width: 100%">
 </div>
+
+<div class="small_spacer"></div>
 
 <table class="table table-condensed">
   <thead>
@@ -27,7 +31,7 @@
    <th></th>
    <th></th>
   </thead>
-  <tbody> 
+  <tbody>
 
 
 <% @expenses.each do |expense| %>
@@ -89,7 +93,7 @@
       <%= link_to edit_user_sphere_path(id: @sphere.id), :class => "no_underline" do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Edit Sphere</div>
       <% end %>
-      
+
       <div class="destroy_sphere">
         <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
       </div>
@@ -242,7 +246,7 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
    }
 
 chart5.render();
-chart1.render();
+// chart1.render();
 chart3.render();
 
 }
