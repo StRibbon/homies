@@ -86,6 +86,7 @@
              {
              type: "stackedBar",
              mouseover: onMouseover,
+             click: onClick,
              dataPoints: [
                <% @spheres.each do |sphere| %>
                    { label: "<%= sphere.name %>", y: <%= total_expense_amount_sphere(sphere)%> },
@@ -114,6 +115,12 @@
     var sphereUrl = $(divShowId).attr('href');
     $('.view_button').attr("href", sphereUrl);
     $('#footerShow').show();
+  }
+
+  function onClick(e) {
+    var divShowId = "."+ e.dataPoint.x +"-show a";
+    var sphereUrl = $(divShowId).attr('href');
+    window.location = sphereUrl;
   }
 
   window.onload = init();

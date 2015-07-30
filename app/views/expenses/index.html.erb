@@ -45,7 +45,7 @@
       <div class="col-md-4">
         <ul class="left_footer_info">
           <li class="sphere_title"><%= @sphere.name %></li>
-          <li><span class="left_descriptors">Ideal Share: </span><span class="created_date">$<%= total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id) %></span></li>
+          <li><span class="left_descriptors">Ideal Share: </span><span class="created_date"><%= number_to_currency(total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id)) %></span></li>
           <li>
             <span class="left_descriptors">Homies: </span><span class="sphere_description">
               <% @connections.each do |connection| %>
@@ -61,7 +61,7 @@
 
       <div class="col-md-4">
           <ul class="large_expense">
-            <li><span class="small_dollar">$</span><span class="big_number"><%= number_to_currency(total_expense_amount_sphere(@sphere))%></span></li>
+            <li><span class="small_dollar">$</span><span class="big_number"><%= total_expense_amount_sphere(@sphere)%></span></li>
             <li class="total_expense">total expenses</li>
           </ul>
       </div>
