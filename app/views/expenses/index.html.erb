@@ -3,11 +3,11 @@
 
 
 <h1 class="first_chart_header">Homie Expenses</h1>
-<div id="chartContainer5" style="height: 300px; width: 80%;">
+<div id="chartContainer5" style="height: 300px; width: 50%;">
 </div>
 
 <h1 class="first_chart_header">Category Breakdown</h1>
-<div id="chartContainer1" style="height: 300px; width: 80%">
+<div id="chartContainer1" style="height: 300px; width: 50%">
 </div>
 
 
@@ -18,6 +18,10 @@
 <strong>Cost:</strong> <%= expense.cost %>
 <strong>Notes:</strong> <%= expense.notes %>
 <strong>Category:</strong> <%= expense.category.name %>
+<strong>Created:</strong> <%= expense.created_at %>
+<% user = User.find_by_id(expense.user_id) %>
+
+<strong>Created BY:</strong> <%= user.username %>
 
 <%= link_to "Edit", edit_expense_path(expense.id) %>
 <%= link_to "Delete", expense_path(expense.id), method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -61,10 +65,12 @@
 
       <div class="col-md-4">
           <ul class="large_expense">
-            <li><span class="small_dollar">$</span><span class="big_number"><%= total_expense_amount_sphere(@sphere)%></span></li>
-            <li class="total_expense">total expenses</li>
+            <li><span class="small_dollar">$</span><span class="big_number" id="footerCost"><%= total_expense_amount_sphere(@sphere)%></span></li>
+            <li class="total_expense" id="footerLabel">total expenses</li>
           </ul>
       </div>
+      <div class="total_expense_value" data-amount="<%= total_expense_amount_sphere(@sphere)%>" style="display:none;"></div>
+      <div class="total_expense_label" data-label="total expenses"></div>
 
 
       <div class="col-md-4 right_buttons">
@@ -103,6 +109,7 @@
     {
       colorSet: "colorShades",
       axisX:{
+          labelMaxWidth: 60,
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
@@ -119,6 +126,8 @@
       data: [
       {
         type: "bar",
+        mouseover: onMouseoverCat,
+        mouseout: onMouseoutCat,
         dataPoints: [
           <% total_expense_by_category(@id).each do |expense|%>
             { y:<%= expense["sum"] %>, label:"<%= expense["name"] %>" },
@@ -127,6 +136,20 @@
       },
       ]
     });
+
+    function onMouseoverCat(e){
+      $("#footerCost").text(e.dataPoint.y);
+      $("#footerLabel").text(e.dataPoint.label);
+
+    }
+    function onMouseoutCat(e){
+      var defaultCost = $(".total_expense_value").attr("data-amount");
+      var defaultLabel = $(".total_expense_label").attr("data-label");
+      $("#footerCost").text(defaultCost);
+      $("#footerLabel").text(defaultLabel);
+
+    }
+
 
 var chart5 = new CanvasJS.Chart("chartContainer5",
    {
@@ -137,6 +160,7 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
         content: "{legendText}: {y}"
       },
       axisX:{
+        labelMaxWidth: 100,
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
@@ -149,6 +173,7 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
           labelFontColor: "#EEEFF0",
       },
       data: [
+
         <% categories_per_sphere(@id).each do |cat|%>
           {
           type: "stackedBar",
