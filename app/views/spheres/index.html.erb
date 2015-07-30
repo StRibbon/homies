@@ -4,20 +4,18 @@
   <img src="<%= asset_path( 'spacer.png' ) %>">
 </div>
 
-<ul>
 <% counter= 0 %>
 <% @spheres.each do |sphere| %>
-<li>
-<div class="<%= counter %>-show">
+
+<div class="<%= counter %>-show" style="display:none;">
   <%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
 </div>
-</li>
 
-<div class="<%= counter %>" data-name="<%= sphere.name %>" data-description="<%= sphere.description%>" data-createDate="<%= sphere.created_at%>" data-cost="<%= total_expense_amount_sphere(sphere)%>" style="display:none;"></div>
+
+<div class="<%= counter %>" data-name="<%= sphere.name %>" data-description="<%= sphere.description%>" data-createDate="<%= sphere.created_at.in_time_zone("Pacific Time (US & Canada)").strftime("%m.%d %H:%M %Y") %>" data-cost="<%= total_expense_amount_sphere(sphere)%>" style="display:none;"></div>
   <% counter += 1 %>
   <% end %>
 
-</ul>
 
 <div id="chartContainer" style="height: 300px; width: 100%;">
 </div>
@@ -60,10 +58,11 @@
 
       CanvasJS.addColorSet("grayShades",
       [
-        "#E1E2E3",
-        "#B5B7BA",
-        "#6E7072",
-        "#444446"
+        "#7364AC",
+        "#9F96C1",
+        "#40489D",
+        "#557EC0",
+        "#A4C9EA"
       ]);
 
       var chart = new CanvasJS.Chart("chartContainer",
