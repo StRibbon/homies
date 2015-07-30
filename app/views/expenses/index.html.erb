@@ -61,7 +61,7 @@
 
       <div class="col-md-4">
           <ul class="large_expense">
-            <li><span class="small_dollar">$</span><span class="big_number"><%= total_expense_amount_sphere(@sphere)%></span></li>
+            <li><span class="small_dollar">$</span><span class="big_number"><%= number_to_currency(total_expense_amount_sphere(@sphere))%></span></li>
             <li class="total_expense">total expenses</li>
           </ul>
       </div>
@@ -106,7 +106,7 @@
           lineThickness:0,
           tickLength:0,
           labelFontColor: "#EEEFF0",
-          
+
       },
       axisY:{
           gridThickness:0,
@@ -152,7 +152,7 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
           {
           type: "stackedBar",
           legendText: "<%= cat["name"] %>",
-          
+
           dataPoints: [
 
           <% usernames_per_sphere(@id).each do |user|%>
