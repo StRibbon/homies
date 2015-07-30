@@ -1,15 +1,24 @@
-  <div id="navigation">
-    <div class="wrap_nav_left">
+ <div id="navigation">
+  <%= link_to image_tag('home_symbol.png'), user_spheres_path, class:"dollar_logo" %>
 
-  <%= link_to image_tag('home_symbol.png'), user_spheres_path %>
+  <%= link_to about_path do %>
+    <div class="new_nav addsphere_new">+</div>
+  <% end %>
 
-      <ul>
-        <li><%= link_to "ABOUT", about_path %></li>
-        <li class="invite_a_homie"><%= link_to "INVITE", invite_path %></li>
-      </ul>
-      <div class="profile_pic">
-      <img class="profile_pic_img"src=<%= current_user.img_url %>>
-      </div>
-      <li class="nav_signout"><%= link_to "LOGOUT", logout_path, id: "nav_signout_linkto", method: :delete %></li>
-    </div>
+  <%= link_to about_path do %>
+    <div class="new_nav about_new">About</div>
+  <% end %>
+
+  <%= link_to invite_path do %>
+    <div class="new_nav invite_new">Invite</div>
+  <% end %>
+
+  <div class="new_nav logout_new"><%= link_to "Logout", logout_path, id: "nav_signout_linkto", method: :delete %>
+  </div>
+
+  <div class="profile_pic">
+    <img class="profile_pic_img"src=<%= current_user.img_url %>>
+  </div>
+
+
   </div>
