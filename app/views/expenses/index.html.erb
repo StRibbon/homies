@@ -83,7 +83,7 @@ $<%= total_expense_amount_sphere(@sphere)%>
 
 
 <script type="text/javascript">
-  window.onload = function () {
+  function init() {
 
     CanvasJS.addColorSet("colorShades",
     [
@@ -166,7 +166,10 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
 
 chart5.render();
 chart1.render();
+
 }
+window.onload = init();
+
 </script>
 
 <hr>
