@@ -1,7 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-   config.action_mailer.default_url_options = { host: ENV['URL'] }
-   config.action_mailer.raise_delivery_errors = true
+   config.action_mailer.default_url_options = { host: "shielded-shore-1065.herokuapp.com" }
    config.action_mailer.delivery_method = :smtp
 
    config.action_mailer.smtp_settings = {
@@ -10,6 +9,8 @@ Rails.application.configure do
     :enable_starttls_auto => true, # detects and uses STARTTLS
     :user_name => Rails.application.secrets[:MANDRILL_USERNAME], # SMTP password is any valid API key
     :password  => Rails.application.secrets[:MANDRILL_PASSWORD], # SMTP password is any valid API key
+    :domain => 'heroku.com',
+    :authenication => "plain"
   }
   # Code is not reloaded between requests.
   config.cache_classes = true
