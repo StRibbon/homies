@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :prevent_login_signup, only: [:signup, :create, :login, :attempt_login] 
+
   def index
     @spheres = Sphere.all
   end

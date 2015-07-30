@@ -1,4 +1,5 @@
 class ExpensesController < ApplicationController
+  before_action :confirm_logged_in
   before_action :set_user, only: [:index, :new, :create]
   before_action :find_sphere_id, only: [:new]
   before_action :find_expense_id, only: [:edit, :destroy, :update]

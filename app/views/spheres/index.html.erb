@@ -1,5 +1,9 @@
 <%= render "navbar" %>
 
+<div id="roller_spacer">
+  <img src="<%= asset_path( 'spacer.png' ) %>">
+</div>
+
 <ul>
   <% counter= 0 %>
 <% @spheres.each do |sphere| %>
@@ -40,18 +44,17 @@
       </div>
 
 
-      <div class="col-md-4">
-        <ul class="left_footer_info">
-          <li class="homies"><span class="left_descriptors">Homies:</span> You, Armand, Stephen</li>
-        </ul>
+      <div class="col-md-4 right_buttons">
+        <a class="view_button" href="">
+        <div class="btn btn-lg btn-primary btn-block">View Sphere</div>
+        </a>
 
-        <ul class="bottom_right_footer">
-          <li class="view_button"><a href="">View Sphere</a></li>
-          <li class="edit">Edit</li>
-          <li class="delete">Delete</li>
-        </ul>
+        <%= link_to new_user_sphere_path do %>
+          <div class="btn btn-lg btn-primary btn-block">Add Sphere</div>
+        <% end %>
 
       </div>
+
     </div>
   </div>
   </footer>
@@ -114,7 +117,7 @@
     $('.big_number').html(sphereCost);
 
     var sphereUrl = $(divShowId).attr('href');
-    $('.view_button a').attr("href", sphereUrl);
+    $('.view_button').attr("href", sphereUrl);
     $('#footerShow').show();
   }
 
