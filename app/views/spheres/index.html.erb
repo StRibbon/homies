@@ -5,21 +5,17 @@
 </div>
 
 <ul>
-  <% counter= 0 %>
+<% counter= 0 %>
 <% @spheres.each do |sphere| %>
 <li>
 <div class="<%= counter %>-show">
-<%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
+  <%= link_to sphere.name, user_sphere_expenses_path(sphere_id: sphere.id) %>
 </div>
-<strong>Description:</strong> <%= sphere.description %>
-<%= total_expense_amount_sphere(sphere)%>
-<%= sphere.created_at%>
-<%= link_to "Edit", edit_user_sphere_path(id: sphere.id) %>
-<%= link_to 'Destroy', user_sphere_path(id: sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
 </li>
+
 <div class="<%= counter %>" data-name="<%= sphere.name %>" data-description="<%= sphere.description%>" data-createDate="<%= sphere.created_at%>" data-cost="<%= total_expense_amount_sphere(sphere)%>" style="display:none;"></div>
-<% counter += 1 %>
-<% end %>
+  <% counter += 1 %>
+  <% end %>
 
 </ul>
 
