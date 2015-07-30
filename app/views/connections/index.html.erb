@@ -10,7 +10,7 @@
 		  <% user = User.find_by_id(connection.user_id) %>
 		  <img src=<%= user.img_url %> width="50" height="50">
 		  <%= user.username %>
-		  <%= link_to "Delete", delete_connection_path(@id, connection), :class => "grey", method: :delete, data: { confirm: 'Are you sure?' } %> 
+		  <%= link_to "Delete", delete_connection_path(@id, connection), :class => "grey left_space", method: :delete, data: { confirm: 'Are you sure?' } %> 
 		</p>
 	<% end %>
 <% end %>
