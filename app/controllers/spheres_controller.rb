@@ -39,8 +39,7 @@ class SpheresController < ApplicationController
   	@sphere.owner_id = set_owner_id
     if @sphere.save
       @users_added = User.joins(:connections).where(connections: {sphere_id: @sphere.id})
-        @users_added.each do |homie|
-          binding.pry        
+        @users_added.each do |homie|      
           UserMailer.user_added(homie, @sphere).deliver_now
         end
       redirect_to user_sphere_expenses_path(sphere_id: @sphere.id), flash: {success: "#{@sphere.name} added!"}
