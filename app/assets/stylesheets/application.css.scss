@@ -52,7 +52,7 @@ body {
   border-radius: 0;
   padding-bottom: 7px;
   padding-top: 7px;
-  background-image: url("login_button.png");
+  background-image: image-url("login_button.png");
   background-size: cover;
 }
 
@@ -156,7 +156,7 @@ a.signup_loginpage {
 // LOGIN SIGNUP BACKGROUND IMAGE
 
 .fake_body {
-  background-image: url("roller_4.jpg");
+  background-image: image-url("roller_4.jpg");
   background-size: cover;
   height: 100vh;
   font-family: 'Josefin Sans', sans-serif;
