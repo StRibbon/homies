@@ -66,3 +66,107 @@ $<%= total_expense_amount_sphere(@sphere)%>
       <%= item["username"] %><br>
    <% end %>
 <% end %>
+<h4>Expense by User by Category</h4>
+<% cat_id_in_sphere(@id).each do |cat|%>
+   <% x = cat["category_id"] %>
+   <% total_expense_by_user_by_cat(@id, x).each do |item|%>
+      $<%= item["sum"] %>
+      <%= item["name"] %>
+      <%= item["username"] %><br>
+   <% end %>
+<% end %>
+
+<div id="chartContainer5" style="height: 300px; width: 80%;">
+</div>
+<div id="chartContainer1" style="height: 300px; width: 80%;">
+</div>
+
+
+<script type="text/javascript">
+  window.onload = function () {
+
+    CanvasJS.addColorSet("colorShades",
+    [
+      "#7364AC",
+      "#9F96C1",
+      "#40489D",
+      "#557EC0",
+      "#A4C9EA"
+    ]);
+
+    var chart1 = new CanvasJS.Chart("chartContainer1",
+    {
+      colorSet: "colorShades",
+      title:{
+        text: "<%= @sphere.name %> Total by Category",
+        fontFamily: "Josefin Sans"
+      },
+      axisX:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      axisY:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      backgroundColor: null,
+      data: [
+      {
+        type: "bar",
+        dataPoints: [
+          <% total_expense_by_category(@id).each do |expense|%>
+            { y:<%= expense["sum"] %>, label:"<%= expense["name"] %>" },
+          <% end %>
+        ]
+      },
+      ]
+    });
+
+var chart5 = new CanvasJS.Chart("chartContainer5",
+   {
+     colorSet: "colorShades",
+     title:{
+      text: "Expenses by User",
+      fontFamily: "Josefin Sans"
+      },
+      backgroundColor: null,
+      toolTip:{
+        enabled: true,
+        content: "{legendText}: {y}"
+      },
+      axisX:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      axisY:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      data: [
+        <% categories_per_sphere(@id).each do |cat|%>
+          {
+          type: "stackedBar",
+          legendText: "<%= cat["name"] %>",
+          showInLegend: "true",
+          dataPoints: [
+
+          <% usernames_per_sphere(@id).each do |user|%>
+              { label: "<%= user["username"] %>" , y: <%= cat_sum_with_default(@id, cat["id"], user["id"]) %>},
+          <% end %>
+          ]
+        },
+        <% end %>
+
+      ]
+   });
+
+chart5.render();
+chart1.render();
+}
+</script>
+
+<hr>
