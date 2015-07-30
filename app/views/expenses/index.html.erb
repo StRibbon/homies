@@ -1,19 +1,16 @@
-<h1><%= @sphere.name %>
-</h1>
-<%= link_to "Edit Sphere", edit_user_sphere_path(id: @sphere.id) %>
-<%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, data: { confirm: 'Are you sure?' } %>
-<h5>
-<%= link_to "Edit h0mie$", connections_path %>:
-<% @connections.each do |connection| %>
-<% user = User.find_by_id(connection.user_id) %>
-<%= user.username %>
-<img src=<%= user.img_url %> width="40">
-<% end %>
-</h5>
+<%= render "navbar" %>
 
-<br>
 
-<%= link_to "Add Expense", new_user_sphere_expense_path %>
+
+<h1 class="first_chart_header">Homie Expenses</h1>
+<div id="chartContainer5" style="height: 300px; width: 80%;">
+</div>
+
+<h1 class="first_chart_header">Category Breakdown</h1>
+<div id="chartContainer1" style="height: 300px; width: 80%">
+</div>
+
+
 <ul>
 <% @expenses.each do |expense| %>
 <li>
@@ -28,24 +25,6 @@
 </li>
 <% end %>
 </ul>
-<h4>Total</h4>
-$<%= total_expense_amount_sphere(@sphere)%>
-<br>
-<h4>Number of users in sphere</h4>
-<%= number_of_user_in_sphere(@id) %>
-<h4>Per person</h4>
-<%= total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id) %>
-<h4>Total spend by Category</h4>
-<% total_expense_by_category(@id).each do |expense|%>
-  $<%= expense["sum"] %>
-  <%= expense["name"] %> <br>
-<% end %>
-<br>
-<h4>Total spend by User</h4>
-<% total_expense_by_user(@id).each do |expense|%>
-  $<%= expense["sum"] %>
-  <%= expense["username"] %> <br>
-<% end %>
 
 <h4>Expense by User</h4>
 <% user_id_in_sphere(@id).each do |user|%>
@@ -57,29 +36,54 @@ $<%= total_expense_amount_sphere(@sphere)%>
    <% end %>
 <% end %>
 <br>
-<h4>Expense by Category by User</h4>
-<% user_id_in_sphere(@id).each do |user|%>
-   <% x = user["user_id"] %>
-   <% total_expense_by_category_by_user(@id, x).each do |item|%>
-      $<%= item["sum"] %>
-      <%= item["name"] %>
-      <%= item["username"] %><br>
-   <% end %>
-<% end %>
-<h4>Expense by User by Category</h4>
-<% cat_id_in_sphere(@id).each do |cat|%>
-   <% x = cat["category_id"] %>
-   <% total_expense_by_user_by_cat(@id, x).each do |item|%>
-      $<%= item["sum"] %>
-      <%= item["name"] %>
-      <%= item["username"] %><br>
-   <% end %>
-<% end %>
 
-<div id="chartContainer5" style="height: 300px; width: 80%;">
+<div class="spacer">
 </div>
-<div id="chartContainer1" style="height: 300px; width: 80%;">
-</div>
+
+<footer>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="left_footer_info">
+          <li class="sphere_title"><%= @sphere.name %></li>
+          <li><span class="left_descriptors">Ideal Share: </span><span class="created_date">$<%= total_expense_amount_sphere(@sphere) / number_of_user_in_sphere(@id) %></span></li>
+          <li>
+            <span class="left_descriptors">Homies: </span><span class="sphere_description">
+              <% @connections.each do |connection| %>
+                <% user = User.find_by_id(connection.user_id) %>
+                <%= user.username %>
+                <img src=<%= user.img_url %> width="30" height="30">
+              <% end %>
+            </span>
+          </li>
+          <li class="edit_homie"><%= link_to "Edit homies", connections_path, :class => "grey"%>
+          </li>
+      </div>
+
+      <div class="col-md-4">
+          <ul class="large_expense">
+            <li><span class="small_dollar">$</span><span class="big_number"><%= total_expense_amount_sphere(@sphere)%></span></li>
+            <li class="total_expense">total expenses</li>
+          </ul>
+      </div>
+
+
+      <div class="col-md-4">
+      <%= link_to new_user_sphere_expense_path do %>
+        <div class="btn btn-lg btn-primary btn-block add_expense">Add Expense</div>
+      <% end %>
+
+      <%= link_to edit_user_sphere_path(id: @sphere.id), :class => "no_underline" do %>
+        <div class="btn btn-lg btn-primary btn-block add_expense">Edit Sphere</div>
+      <% end %>
+      <div class="destroy_sphere">
+        <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
+      </div>
+
+      </div>
+
+    </div>
+  </footer>
+
 
 
 <script type="text/javascript">
@@ -97,19 +101,18 @@ $<%= total_expense_amount_sphere(@sphere)%>
     var chart1 = new CanvasJS.Chart("chartContainer1",
     {
       colorSet: "colorShades",
-      title:{
-        text: "<%= @sphere.name %> Total by Category",
-        fontFamily: "Josefin Sans"
-      },
       axisX:{
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
+          labelFontColor: "#EEEFF0",
+          
       },
       axisY:{
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
+          labelFontColor: "#EEEFF0",
       },
       backgroundColor: null,
       data: [
@@ -127,10 +130,6 @@ $<%= total_expense_amount_sphere(@sphere)%>
 var chart5 = new CanvasJS.Chart("chartContainer5",
    {
      colorSet: "colorShades",
-     title:{
-      text: "Expenses by User",
-      fontFamily: "Josefin Sans"
-      },
       backgroundColor: null,
       toolTip:{
         enabled: true,
@@ -140,18 +139,20 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
+
       },
       axisY:{
           gridThickness:0,
           lineThickness:0,
           tickLength:0,
+          labelFontColor: "#EEEFF0",
       },
       data: [
         <% categories_per_sphere(@id).each do |cat|%>
           {
           type: "stackedBar",
           legendText: "<%= cat["name"] %>",
-          showInLegend: "true",
+          
           dataPoints: [
 
           <% usernames_per_sphere(@id).each do |user|%>

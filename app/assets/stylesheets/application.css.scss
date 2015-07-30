@@ -167,6 +167,9 @@ a.forgot_password {
     font-family: 'Josefin Sans', sans-serif;
     background-image: url(navbar.png);
     background-size: cover;
+    position: fixed;
+    z-index: 999;
+    top: 0px
 }
 
 #navigation ul {
@@ -233,7 +236,7 @@ a#nav_signout_linkto {
 footer {
   width: 100%;
   height: 200px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background-image: url("footer_3.png");
   background-size: cover;
@@ -383,3 +386,39 @@ margin-bottom: 0px
 label {
   font-weight: normal
 }
+
+// EXPENSES INDEX
+.spacer {
+  height: 200px;
+  width: 100%
+}
+
+.first_chart_header {
+  font-size: 27px;
+  text-align: center;
+  margin-top: 175px;
+  margin-bottom: 0px
+}
+
+.canvasjs-chart-credit {
+  display: none
+}
+
+.add_expense {
+  margin-top: 15px;
+}
+
+.no_underline a:hover {
+  text-decoration: none;
+}
+
+.destroy_sphere {
+  text-align: center;
+  margin-top: 20px;
+  font-color: #adadad
+}
+
+.grey {
+  color: #8C8B8C;
+}
+
