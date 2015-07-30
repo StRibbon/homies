@@ -67,7 +67,7 @@
       </div>
 
 
-      <div class="col-md-4">
+      <div class="col-md-4 right_buttons">
       <%= link_to new_user_sphere_expense_path do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Add Expense</div>
       <% end %>
@@ -75,6 +75,7 @@
       <%= link_to edit_user_sphere_path(id: @sphere.id), :class => "no_underline" do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Edit Sphere</div>
       <% end %>
+      
       <div class="destroy_sphere">
         <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
       </div>
