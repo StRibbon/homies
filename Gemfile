@@ -28,7 +28,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
-
+gem 'dotenv-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -38,7 +38,6 @@ gem 'bootswatch-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -46,3 +45,7 @@ group :development, :test do
   gem 'spring'
 end
 
+group :production do
+  gem 'rails_12factor'
+  gem 'puma'
+end

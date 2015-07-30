@@ -36,5 +36,9 @@ c3 = Category.create(name:"Entertainment", color: "blue")
 c4 = Category.create(name:"Drinks", color: "yellow")
 
 e1 = Expense.create(name:"Gas", cost: 60.08 , notes: "Shell on the i15", user_id: u3.id, category_id: c1.id, sphere_id: s1.id)
-e1 = Expense.create(name:"Redbull", cost: 12.50 , notes: "Needed wings! 2 four packs", user_id: u2.id, category_id: c4.id, sphere_id: s1.id)
-e1 = Expense.create(name:"Big ass steaks", cost: 80.69 , notes: "medium rare bone-in", user_id: u1.id, category_id: c2.id, sphere_id: s1.id)
+e2 = Expense.create(name:"Redbull", cost: 12.50 , notes: "Needed wings! 2 four packs", user_id: u2.id, category_id: c4.id, sphere_id: s1.id)
+e3 = Expense.create(name:"Big ass steaks", cost: 80.69 , notes: "medium rare bone-in", user_id: u1.id, category_id: c2.id, sphere_id: s1.id)
+
+e4 = Expense.create(name:"Gas", cost: 60.08 , notes: "Shell on the i15", user_id: u3.id, category_id: c1.id, sphere_id: s2.id)
+e5 = Expense.create(name:"Redbull", cost: 12.50 , notes: "Needed wings! 2 four packs", user_id: u2.id, category_id: c4.id, sphere_id: s2.id)
+e6 = Expense.create(name:"Big ass steaks", cost: 80.69 , notes: "medium rare bone-in", user_id: u1.id, category_id: c2.id, sphere_id: s3.id)
