@@ -75,18 +75,43 @@ $<%= total_expense_amount_sphere(@sphere)%>
       <%= item["username"] %><br>
    <% end %>
 <% end %>
-<div id="chartContainer1" style="height: 300px; width: 600px;">
+
+<div id="chartContainer5" style="height: 300px; width: 80%;">
 </div>
-<div id="chartContainer5" style="height: 300px; width: 600px;">
+<div id="chartContainer1" style="height: 300px; width: 80%;">
 </div>
+
 
 <script type="text/javascript">
   window.onload = function () {
+
+    CanvasJS.addColorSet("colorShades",
+    [
+      "#7364AC",
+      "#9F96C1",
+      "#40489D",
+      "#557EC0",
+      "#A4C9EA"
+    ]);
+
     var chart1 = new CanvasJS.Chart("chartContainer1",
     {
+      colorSet: "colorShades",
       title:{
-        text: "<%= @sphere.name %> Total by Category"
+        text: "<%= @sphere.name %> Total by Category",
+        fontFamily: "Josefin Sans"
       },
+      axisX:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      axisY:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      backgroundColor: null,
       data: [
       {
         type: "bar",
@@ -101,15 +126,26 @@ $<%= total_expense_amount_sphere(@sphere)%>
 
 var chart5 = new CanvasJS.Chart("chartContainer5",
    {
+     colorSet: "colorShades",
      title:{
-      text: "Expenses by User"
+      text: "Expenses by User",
+      fontFamily: "Josefin Sans"
       },
-
+      backgroundColor: null,
       toolTip:{
         enabled: true,
         content: "{legendText}: {y}"
       },
-
+      axisX:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
+      axisY:{
+          gridThickness:0,
+          lineThickness:0,
+          tickLength:0,
+      },
       data: [
         <% categories_per_sphere(@id).each do |cat|%>
           {
@@ -128,8 +164,8 @@ var chart5 = new CanvasJS.Chart("chartContainer5",
       ]
    });
 
-chart1.render();
 chart5.render();
+chart1.render();
 }
 </script>
 
