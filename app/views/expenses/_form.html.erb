@@ -1,25 +1,32 @@
-<%= form_for [@user, @sphere, @expense] do |f|%>
-<div>
-  <%= f.label :name%>
-  <%= f.text_field :name%>
-</div>
-<div>
-  <%= f.label :cost%>
-  <%= f.text_field :cost%>
-</div>
-<div>
-  <%= f.label :notes%>
-  <%= f.text_field :notes%>
-</div>
-<div>
+<div class="fake_body">
+<div class="container">
+
+<%= form_for [@user, @sphere, @expense], :html => {:class => 'form-signin signup_form'}  do |f|%>
+
+<img class="signup_logo" src="<%= asset_path( 'homies_logo.png' ) %>" alt="Homies Logo" width="210">
+
+  <%= f.label :name, class: 'sr-only'%>
+  <%= f.text_field :name, class: 'form-control', placeholder: "Expense name"%>
+
+  <%= f.label :cost, class: 'sr-only'%>
+  <%= f.text_field :cost, class: 'form-control', placeholder: "Cost"%>
+
+  <%= f.label :notes, class: 'sr-only'%>
+  <%= f.text_field :notes, class: 'form-control', placeholder: "Additional notes"%>
+
+<p class="add_homies">Categories: </p>
 <%= f.collection_radio_buttons(:category_id, @categories, :id, :name) do |b| %>
-  <span>
+  <span class="col-sm-7">
 	<%= b.radio_button %>
 	<%= b.label %>
   </span>
   <% end %>
-</div>
+
+
 <div>
   <%= f.submit %>
 </div>
 <% end %>
+
+</div>
+</div>
