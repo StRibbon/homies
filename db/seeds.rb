@@ -18,11 +18,6 @@ u2 = User.create(username:"stephen", email:"stribbon@icloud.com", password:"step
 u3 = User.create(username:"armand", email:"apaquino@gmail.com", password:"apaquino", img_url:"http://also.kottke.org/misc/images/brad-wilson-owl-03.jpg")
 u4 = User.create(username:"rando", email:"spaceribbon@gmail.com", password:"rando", img_url:"http://nomiwaters.com/wp-content/uploads/2011/07/crazy-man.jpg")
 
-s1 = Sphere.create(name:"Vegas", description:"Crazy Nights", owner_id: u2.id)
-
-Connection.create(user: u1, sphere: s1)
-Connection.create(user: u2, sphere: s1)
-Connection.create(user: u3, sphere: s1)
 
 c1 = Category.create(name:"Travel", color: "green")
 c2 = Category.create(name:"Meals", color: "red")
