@@ -45,8 +45,8 @@ class SpheresController < ApplicationController
         end
         sphere_id = @sphere.id
         user_id = @sphere.owner_id
-      # redirect_to user_sphere_expenses_path(sphere_id: @sphere.id), flash: {success: "#{@sphere.name} added!"}
-       redirect_to new_user_sphere_expense_path(sphere_id: sphere_id, user_id: user_id), flash: {success: "#{@sphere.name} added, add an expense!"}
+        redirect_to new_user_sphere_expense_path(sphere_id: sphere_id, user_id: user_id), flash: {success: "#{@sphere.name} added, add an expense!"}
+        # redirect_to user_sphere_expenses_path(sphere_id: @sphere.id), flash: {success: "#{@sphere.name} added!"}
     else
       render :new
     end
