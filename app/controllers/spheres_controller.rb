@@ -31,7 +31,7 @@ class SpheresController < ApplicationController
 
   def destroy
     @sphere.destroy
-    redirect_to user_spheres_path, flash: {success: "#{@sphere.name} Deleted!"}
+    redirect_to user_spheres_path(user_id: session[:user_id]), flash: {success: "#{@sphere.name} Deleted!"}
   end
 
   def create
