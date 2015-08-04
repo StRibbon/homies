@@ -44,10 +44,10 @@
     <% user = User.find_by_id(expense.user_id) %>
 
     <td><%= user.username %></td>
-
+  <% if user.id == current_user.id %>
     <td><%= link_to "Edit", edit_expense_path(expense.id) %></td>
     <td><%= link_to "Delete", expense_path(expense.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-
+  <% end %>
 </tr>
 <% end %>
 </tbody>
