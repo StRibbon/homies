@@ -2,6 +2,7 @@ class ConnectionsController < ApplicationController
   before_action :find_connections, only: [:index, :show, :edit, :update, :destroy]
 
   def index
+
   end
 
   def new
@@ -52,6 +53,7 @@ class ConnectionsController < ApplicationController
 
   def find_connections
    @id = params[:sphere_id]
+   @sphere = Sphere.find_by_id(params[:sphere_id])
    @connections = Connection.where(sphere_id: @id)
   end
 end
