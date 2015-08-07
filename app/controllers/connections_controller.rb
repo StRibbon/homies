@@ -38,8 +38,13 @@ class ConnectionsController < ApplicationController
 
   def destroy
   	@connection = Connection.find_by_id(params[:id])
-    @connection.destroy
-    redirect_to connections_path(@connection.sphere_id), flash: {success: "Connection Deleted!"}
+      if(@connection.user_id == current_user.id)
+        @connection.destroy
+        redirect_to user_spheres_path(current_user.id)
+      else   
+        @connection.destroy
+        redirect_to connections_path(@connection.sphere_id), flash: {success: "Connection Deleted!"}
+      end
   end
 
   private
