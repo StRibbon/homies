@@ -70,11 +70,14 @@
                 <img src=<%= user.img_url %> width="30" height="30">
               <% end %>
             </span>
-          </li>
-          <li class="edit_homie"><%= link_to "Edit homies", connections_path, :class => "grey"%>
+          </li>    
+          <li class="edit_homie">
+          <% if @sphere.owner_id.to_i == current_user.id %>
+            <%= link_to "Edit homies", connections_path, :class => "grey"%>
+            <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
+          <% end %>
           </li>
       </div>
-
       <div class="col-md-4">
           <ul class="large_expense">
             <li><span class="small_dollar">$</span><span class="big_number" id="footerCost"><%= total_expense_amount_sphere(@sphere)%></span></li>
@@ -89,14 +92,10 @@
       <%= link_to new_user_sphere_expense_path do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Add Expense</div>
       <% end %>
-  <% if @sphere.owner_id == current_user.id %>
+  <% if @sphere.owner_id.to_i == current_user.id %>
       <%= link_to edit_user_sphere_path(id: @sphere.id), :class => "no_underline" do %>
         <div class="btn btn-lg btn-primary btn-block add_expense">Edit Sphere</div>
       <% end %>
-
-      <div class="destroy_sphere">
-        <%= link_to 'Destroy Sphere', user_sphere_path(id: @sphere.id), method: :delete, :class => "grey", data: { confirm: 'Are you sure?' } %>
-      </div>
   <% end %>
 
       </div>
